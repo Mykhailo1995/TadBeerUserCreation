@@ -4,8 +4,6 @@ import Pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import javax.swing.plaf.TableHeaderUI;
-
 public class UserCreationTest extends LocalTestRunner{
     @Test(priority=1)
     public void testAuthorisation() throws InterruptedException {
@@ -39,7 +37,6 @@ public class UserCreationTest extends LocalTestRunner{
 
         SignIn signIn = new SignIn(getDriver());
         signIn.signIn("m.stefaniuk.1995@gmail.com", "Password123!");
-        Thread.sleep(8000);
         Assert.assertEquals(topPart.findUserName().getText(),"Misha Stefan");
         topPart.logoutUser();
     }

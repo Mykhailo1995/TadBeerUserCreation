@@ -3,6 +3,9 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.concurrent.TimeUnit;
 
 public class NewUser {
     protected WebDriver driver;
@@ -65,9 +68,11 @@ public class NewUser {
         findLocalAdminButton().click();
         findServiceCenterDropdown().click();
         findServiceCentersTestButton().click();
+        driver.manage().timeouts().pageLoadTimeout(4, TimeUnit.SECONDS);
 
         findGenderDropdown().click();
         findGenderMaleButton().click();
+        driver.manage().timeouts().pageLoadTimeout(4, TimeUnit.SECONDS);
 
         findFirstNameInput().sendKeys(firstN);
         findLastNameInput().sendKeys(lastN);
@@ -80,6 +85,8 @@ public class NewUser {
         findConfirmPasswordInput().sendKeys(confirm);
         findCreateButton().click();
     }
-
-
+    public void dropDowns(){
+        Select drpSC = new Select(driver.findElement(By.cssSelector("#userType")));
+        drpSC.selectByVisibleText("Trainer");
+    }
 }

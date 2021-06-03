@@ -1,6 +1,7 @@
 package test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,7 +16,9 @@ public class LocalTestRunner {
     protected WebDriver launch() throws InterruptedException {
         WebDriver driver = getDriver();
         driver.get(url);
-        driver.manage().window().maximize();
+       // driver.manage().window().maximize();
+        Dimension d = new Dimension(2048,500);
+       driver.manage().window().setSize(d);
         driver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
 
         return driver;
