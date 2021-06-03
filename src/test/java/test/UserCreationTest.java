@@ -29,7 +29,8 @@ public class UserCreationTest extends LocalTestRunner{
     public void fillInfo() throws InterruptedException {
         NewUser newUser = new NewUser(getDriver());
         newUser.fillInfo( "Misha", "Stefan", "ميشا","ستيفان",  "0666341950", "m.stefaniuk.1995@gmail.com", "Password123!", "Password123!");
-        Thread.sleep(5000);
+
+        Assert.assertEquals(newUser.findAllertWindow().getText(),"User has been created successfully");
     }
     @Test(priority = 4)
     public void loginLocalAdmin() throws InterruptedException {
@@ -38,6 +39,20 @@ public class UserCreationTest extends LocalTestRunner{
 
         SignIn signIn = new SignIn(getDriver());
         signIn.signIn("m.stefaniuk.1995@gmail.com", "Password123!");
-       // Thread.sleep(4000);
+        Thread.sleep(8000);
+        Assert.assertEquals(topPart.findUserName().getText(),"Misha Stefan");
+        topPart.logoutUser();
     }
+    @Test(priority = 5)
+    public void deleteTestUser() throws InterruptedException {
+        SignIn signIn = new SignIn(getDriver());
+        signIn.signIn("superadmin", "Ut0n0m0s-2020-Sup3r4dm1n");
+        LeftNavigation leftNavigation = new LeftNavigation(getDriver());
+        Users users = new Users(getDriver());
+        leftNavigation.clickButtonUsers();
+        users.clickDeleteButton();
+        users.clickOkButton();
+        Assert.assertEquals(users.findNotificationWindow().getText(),"The user has been deleted");
+    }
+
 }

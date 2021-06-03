@@ -21,6 +21,7 @@ public class NewUser {
     private By passwordInput;
     private By confirmPasswordInput;
     private By createButton;
+    private By allertWindow;
 
     public NewUser(WebDriver driver) {
         this.driver = driver;
@@ -39,6 +40,7 @@ public class NewUser {
         this.passwordInput = By.cssSelector("#password");
         this.confirmPasswordInput = By.cssSelector("#confirmPassword");
         this.createButton = By.cssSelector("div > form > button");
+        this.allertWindow = By.cssSelector("body > div:nth-child(8) > div > div");
 
     }
     public WebElement findUserTypeDropdown() { return driver.findElement(userTypeDropdown); }
@@ -56,6 +58,7 @@ public class NewUser {
     public WebElement findPasswordInput() { return driver.findElement(passwordInput); }
     public WebElement findConfirmPasswordInput() { return driver.findElement(confirmPasswordInput); }
     public WebElement findCreateButton() { return driver.findElement(createButton); }
+    public WebElement findAllertWindow() { return driver.findElement(allertWindow); }
 
     public void fillInfo(String firstN, String lastN, String firstAN, String lastAN,  String mobile, String mail, String password, String confirm){
         findUserTypeDropdown().click();
