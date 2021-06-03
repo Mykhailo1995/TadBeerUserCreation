@@ -17,7 +17,11 @@ public class TopPart {
         this.logoutButton = By.cssSelector("li:nth-child(4) > div");
     }
     public WebElement findUserName() { return driver.findElement(userName); }
-
+    public WebElement findLogoutButton() { return driver.findElement(logoutButton); }
+    public void logoutUser(){
+        findUserName().click();
+        findLogoutButton().click();
+    }
     public void clickButtonCreate() { findUserName().click(); }
 }
 
