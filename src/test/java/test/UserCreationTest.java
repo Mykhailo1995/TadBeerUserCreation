@@ -26,7 +26,7 @@ public class UserCreationTest extends LocalTestRunner{
     @Test(priority = 3)
     public void fillInfo() throws InterruptedException {
         NewUser newUser = new NewUser(getDriver());
-        newUser.fillInfo("Trainer", "Some", "Misha", "Stefan", "ميشا","ستيفان", "male", "0666341950", "m.stefaniuk.1995@gmail.com", "Password123!", "Password123!");
-        Thread.sleep(2000);
+        newUser.fillInfo( "Misha", "Stefan", "ميشا","ستيفان",  "0666341950", "m.stefaniuk.1995@gmail.com", "Password123!", "Password123!");
+        Thread.sleep(5000);
     }
 }
