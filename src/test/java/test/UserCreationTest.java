@@ -53,6 +53,8 @@ public class UserCreationTest extends LocalTestRunner{
         users.clickDeleteButton();
         users.clickOkButton();
         Assert.assertEquals(users.findNotificationWindow().getText(),"The user has been deleted");
+
+
     }
 
 }
