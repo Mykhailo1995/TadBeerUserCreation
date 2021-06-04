@@ -16,9 +16,9 @@ public class LocalTestRunner {
     protected WebDriver launch() throws InterruptedException {
         WebDriver driver = getDriver();
         driver.get(url);
-       // driver.manage().window().maximize();
-        Dimension d = new Dimension(2048,500);
-       driver.manage().window().setSize(d);
+       driver.manage().window().maximize();
+       // Dimension d = new Dimension(2048,500);
+     //  driver.manage().window().setSize(d);
         driver.manage().timeouts().implicitlyWait(1000, TimeUnit.SECONDS);
 
         return driver;

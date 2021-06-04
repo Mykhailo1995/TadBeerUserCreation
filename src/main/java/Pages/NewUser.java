@@ -68,10 +68,15 @@ public class NewUser {
         findUserTypeDropdown().click();
         findLocalAdminButton().click();
         findServiceCenterDropdown().click();
-        JavascriptExecutor je = (JavascriptExecutor) driver;
         findServiceCenterDropdown().click();
-        je.executeScript("arguments[0].scrollIntoView(true);",driver.findElement(By.xpath("//div[text()='AlWafa for Domestic Workers Services']")));
-        driver.findElement(By.xpath("//div[text()='AlWafa for Domestic Workers Services']")).click();
+
+        String serviceCenter="Mountain Gate for Workers Services – L.L.C ";
+        WebElement element=driver.findElement(By.xpath("//div[text()='"+serviceCenter+"']"));
+
+        JavascriptExecutor je = (JavascriptExecutor) driver;
+        je.executeScript("arguments[0].scrollIntoView(true);",element);
+
+        element.click();
         driver.manage().timeouts().pageLoadTimeout(4, TimeUnit.SECONDS);
 
         findGenderDropdown().click();
