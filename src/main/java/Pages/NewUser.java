@@ -1,6 +1,7 @@
 package Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -67,7 +68,10 @@ public class NewUser {
         findUserTypeDropdown().click();
         findLocalAdminButton().click();
         findServiceCenterDropdown().click();
-        findServiceCentersTestButton().click();
+        JavascriptExecutor je = (JavascriptExecutor) driver;
+        findServiceCenterDropdown().click();
+        je.executeScript("arguments[0].scrollIntoView(true);",driver.findElement(By.xpath("//div[text()='AlWafa for Domestic Workers Services']")));
+        driver.findElement(By.xpath("//div[text()='AlWafa for Domestic Workers Services']")).click();
         driver.manage().timeouts().pageLoadTimeout(4, TimeUnit.SECONDS);
 
         findGenderDropdown().click();
