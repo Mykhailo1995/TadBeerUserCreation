@@ -14,7 +14,7 @@ public class TopPart {
         this.driver = driver;
         this.userName = By.cssSelector("div.profile-dropdown__name");
         this.navbarButton = By.cssSelector("button.d-md-down-none.navbar-toggler");
-        this.logoutButton = By.cssSelector("li:nth-child(4) > div");
+        this.logoutButton = By.cssSelector(".anticon-poweroff.profile-dropdown__link-icon");
     }
     public WebElement findUserName() { return driver.findElement(userName); }
     public WebElement findLogoutButton() { return driver.findElement(logoutButton); }

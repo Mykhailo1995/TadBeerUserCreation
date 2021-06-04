@@ -1,12 +1,9 @@
 package Pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
-
-import java.util.concurrent.TimeUnit;
 
 public class NewUser {
     protected WebDriver driver;
@@ -38,7 +35,7 @@ public class NewUser {
         this.firstNameArabicInput = By.cssSelector("#firstName_ar");
         this.lastNameArabicInput = By.cssSelector("#lastName_ar");
         this.genderDropdown = By.cssSelector("#gender");
-        this.genderMaleButton = By.cssSelector("body > div:nth-child(10) > div > div > div > div.rc-virtual-list > div.rc-virtual-list-holder > div > div > div.ant-select-item.ant-select-item-option.ant-select-item-option-active");
+        this.genderMaleButton = By.cssSelector("body > div:nth-child(9) > div > div > div > div.rc-virtual-list > div.rc-virtual-list-holder > div > div > div.ant-select-item.ant-select-item-option.ant-select-item-option-active > div");
         this.mobileNumberInput = By.cssSelector("#mobileNumber");
         this.emailInput = By.cssSelector("#email");
         this.passwordInput = By.cssSelector("#password");
@@ -64,29 +61,17 @@ public class NewUser {
     public WebElement findCreateButton() { return driver.findElement(createButton); }
     public WebElement findAllertWindow() { return driver.findElement(allertWindow); }
 
-    public void fillInfo(String firstN, String lastN, String firstAN, String lastAN,  String mobile, String mail, String password, String confirm){
-        findUserTypeDropdown().click();
-        findLocalAdminButton().click();
-        findServiceCenterDropdown().click();
-        findServiceCenterDropdown().click();
-
-        String serviceCenter="Mountain Gate for Workers Services – L.L.C ";
-        WebElement element=driver.findElement(By.xpath("//div[text()='"+serviceCenter+"']"));
-
-        JavascriptExecutor je = (JavascriptExecutor) driver;
-        je.executeScript("arguments[0].scrollIntoView(true);",element);
-
-        element.click();
-        driver.manage().timeouts().pageLoadTimeout(4, TimeUnit.SECONDS);
-
-        findGenderDropdown().click();
-        findGenderMaleButton().click();
-        driver.manage().timeouts().pageLoadTimeout(4, TimeUnit.SECONDS);
-
+    public void fillInfo(String type, String center, String firstN, String lastN, String firstAN, String lastAN,  String mobile, String mail, String password, String confirm) throws InterruptedException {
+        findUserTypeDropdown().sendKeys(type);
+        findUserTypeDropdown().sendKeys(Keys.ENTER);
+        findServiceCenterDropdown().sendKeys(center);
+        findServiceCenterDropdown().sendKeys(Keys.ENTER);
         findFirstNameInput().sendKeys(firstN);
         findLastNameInput().sendKeys(lastN);
         findFirstArabicNameInput().sendKeys(firstAN);
         findLastArabicNameInput().sendKeys(lastAN);
+        findGenderDropdown().click();
+        findGenderMaleButton().click();
 
         findMobileNumberInput().sendKeys(mobile);
         findEmailInput().sendKeys(mail);
@@ -94,8 +79,5 @@ public class NewUser {
         findConfirmPasswordInput().sendKeys(confirm);
         findCreateButton().click();
     }
-    public void dropDowns(){
-        Select drpSC = new Select(driver.findElement(By.cssSelector("#userType")));
-        drpSC.selectByVisibleText("Trainer");
-    }
+
 }

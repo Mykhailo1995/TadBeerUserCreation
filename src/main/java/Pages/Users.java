@@ -15,7 +15,7 @@ public class Users {
         this.driver = driver;
         this.createButton = By.cssSelector("a > button > span");
         this.deleteButton = By.cssSelector("main > div > div > div > div.User-list-page__body.card-body > div.ant-table-wrapper > div > div > div > div > div > table > tbody > tr:nth-child(2) > td:nth-child(1) > ul > li:nth-child(2) > span > svg");
-        this.okButton = By.cssSelector("body > div:nth-child(11) > div > div.ant-modal-wrap.ant-modal-confirm-centered.ant-modal-centered > div > div.ant-modal-content > div > div > div.ant-modal-confirm-btns > button.ant-btn.ant-btn-primary");
+        this.okButton = By.cssSelector("div.ant-modal-confirm-btns > button.ant-btn.ant-btn-primary");
         this.notificationWindow = By.cssSelector("div > div > div > span:nth-child(2)");
 }
     public WebElement findCreateButton() { return driver.findElement(createButton); }

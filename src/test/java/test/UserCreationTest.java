@@ -26,19 +26,27 @@ public class UserCreationTest extends LocalTestRunner{
     @Test(priority = 3)
     public void fillInfo() throws InterruptedException {
         NewUser newUser = new NewUser(getDriver());
-        newUser.fillInfo( "Misha", "Stefan", "ميشا","ستيفان",  "0666341950", "m.stefaniuk.1995@gmail.com", "Password123!", "Password123!");
+        newUser.fillInfo("Local Admin", "Mountain Gate for Workers Services", "Misha", "Stefan", "ميشا","ستيفان",  "0666341950", "m.stefaniuk.1995@gmail.com", "Password123!", "Password123!");
 
         Assert.assertEquals(newUser.findAllertWindow().getText(),"User has been created successfully");
+
     }
     @Test(priority = 4)
     public void loginLocalAdmin() throws InterruptedException {
         TopPart topPart= new TopPart(getDriver());
-        topPart.logoutUser();
+        Thread.sleep(2000);
+        topPart.findUserName().click();
+        Thread.sleep(2000);
+        topPart.findLogoutButton().click();
 
         SignIn signIn = new SignIn(getDriver());
         signIn.signIn("m.stefaniuk.1995@gmail.com", "Password123!");
         Assert.assertEquals(topPart.findUserName().getText(),"Misha Stefan");
-        topPart.logoutUser();
+        Thread.sleep(2000);
+        topPart.findUserName().click();
+        Thread.sleep(2000);
+        topPart.findLogoutButton().click();
+
     }
     @Test(priority = 5)
     public void deleteTestUser() throws InterruptedException {
@@ -48,9 +56,10 @@ public class UserCreationTest extends LocalTestRunner{
         Users users = new Users(getDriver());
         leftNavigation.clickButtonUsers();
         users.clickDeleteButton();
+        Thread.sleep(3000);
         users.clickOkButton();
+        Thread.sleep(3000);
         Assert.assertEquals(users.findNotificationWindow().getText(),"The user has been deleted");
-
 
     }
 
